@@ -15,4 +15,11 @@ class CoursePolicy < ApplicationPolicy
     record.user == user
   end
 
+  def create?
+    user.kind == 'teacher'
+  end
+
+  def destroy?
+    update?
+  end
 end

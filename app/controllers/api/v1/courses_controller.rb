@@ -1,6 +1,6 @@
 class Api::V1::CoursesController < Api::V1::BaseController
   acts_as_token_authentication_handler_for User, except: %i[index show]
-  before_action :set_course, only: %i[show update]
+  before_action :set_course, only: %i[show update destroy]
 
   def index
     @courses = policy_scope(Course)
@@ -11,6 +11,25 @@ class Api::V1::CoursesController < Api::V1::BaseController
   def update
     if @course.update(course_params)
       render :show
+    else
+      render_error
+    end
+  end
+
+  def create
+    @course = Course.new(course_params)
+    @course.user = current_user
+    authorize @course
+    if @course.save
+      render :show, status: :created
+    else
+      render_error
+    end
+  end
+
+  def destroy
+    if @course.destroy
+      head :no_content
     else
       render_error
     end
@@ -29,6 +48,6 @@ class Api::V1::CoursesController < Api::V1::BaseController
 
   def render_error
     render json: { errors: @course.errors.full_messages },
-           status: :unprocessable_entity
+           status: :unprocessable_entity # 422
   end
 end
