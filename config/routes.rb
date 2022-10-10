@@ -2,7 +2,10 @@ Rails.application.routes.draw do
   devise_for :users
   namespace :api, defaults: { format: :json } do
     namespace :v1 do
-      resources :courses, only: %i[index show update create destroy]
+      resources :courses, only: %i[index show update create destroy] do
+        resources :subscriptions, only: %i[create destroy]
+      end
+      resources :subscriptions, only: %i[index]
     end
   end
   root to: 'pages#home'
