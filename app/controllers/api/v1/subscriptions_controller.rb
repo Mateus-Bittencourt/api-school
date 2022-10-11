@@ -6,8 +6,8 @@ class Api::V1::SubscriptionsController < Api::V1::BaseController
   end
 
   def create
-    @subscription = Subscription.new(subscription_params)
-    @subscription.user = current_user
+    @subscription = Subscription.new(user: current_user, course_id: params[:course_id])
+    # @subscription.user = current_user
     authorize @subscription
     if @subscription.save
       render :index, status: :created
@@ -28,9 +28,9 @@ class Api::V1::SubscriptionsController < Api::V1::BaseController
 
   private
 
-  def subscription_params
-    params.require(:subscription).permit(:course_id)
-  end
+  # def subscription_params
+  #   params.require(:subscription).permit(:course_id)
+  # end
 
   def render_error
     render json: { errors: @subscription.errors.full_messages },
