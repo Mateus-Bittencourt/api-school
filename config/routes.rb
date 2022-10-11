@@ -4,6 +4,7 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :courses, only: %i[index show update create destroy] do
         resources :subscriptions, only: %i[create destroy]
+        resources :lectures, only: %i[index show update create destroy]
       end
       resources :subscriptions, only: %i[index]
     end
