@@ -1,5 +1,5 @@
 class Api::V1::LecturesController < Api::V1::BaseController
-  # acts_as_token_authentication_handler_for User, except: %i[index show]
+  acts_as_token_authentication_handler_for User # , except: %i[index show]
   before_action :set_lecture, only: %i[show update destroy]
 
   def index
