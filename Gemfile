@@ -29,6 +29,9 @@ gem 'pundit'
 gem 'simple_token_authentication'
 
 gem 'net-smtp'
+gem 'net-imap', '~> 0.3.1'
+gem 'net-pop', '~> 0.1.2'
+
 
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
