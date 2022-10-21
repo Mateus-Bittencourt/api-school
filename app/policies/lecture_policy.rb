@@ -7,19 +7,18 @@ class LecturePolicy < ApplicationPolicy
   end
 
   def create?
-    true
+    user.kind == 'teacher' && user.courses.include?(record.course)
   end
 
   def update?
-    # user == record.user
-    true
+    create?
   end
 
   def destroy?
-    update?
+    create?
   end
 
   def show?
-    true
+    record.user == user || user.courses.include?(record.course)
   end
 end
