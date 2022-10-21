@@ -28,6 +28,8 @@ gem 'jbuilder', '~> 2.7'
 gem 'pundit'
 gem 'simple_token_authentication'
 
+gem 'net-smtp'
+
 # Reduces boot times through caching; required in config/boot.rb
 gem 'bootsnap', '>= 1.4.4', require: false
 
