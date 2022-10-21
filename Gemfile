@@ -31,6 +31,7 @@ gem 'simple_token_authentication'
 gem 'net-smtp'
 gem 'net-imap', '~> 0.3.1'
 gem 'net-pop', '~> 0.1.2'
+gem "rack-cors"
 
 
 # Reduces boot times through caching; required in config/boot.rb
