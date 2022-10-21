@@ -5,9 +5,9 @@ class Api::V1::SessionsController < Api::V1::BaseController
     return render json: { error: 'Invalid email' }, status: :unauthorized unless user
 
     if user.valid_password?(user_params.fetch(:password))
-      render json: { email: user.email, token: user.authentication_token }
+      render json: { name: user.name, email: user.email, token: user.authentication_token }
     else
-      render json: { error: 'Invalid password' }, status: 401
+      render json: { error: 'Invalid password' }, status: :unauthorized
     end
   end
 

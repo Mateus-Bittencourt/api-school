@@ -50,4 +50,9 @@ class Api::V1::LecturesController < Api::V1::BaseController
     render json: { errors: @lecture.errors.full_messages },
            status: :unprocessable_entity # 422
   end
+
+  def pundit_user
+    current_user.kind == 'teacher' ? current_user.becomes(Teacher) : current_user.becomes(Student)
+  end
+
 end
