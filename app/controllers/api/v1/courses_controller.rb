@@ -6,6 +6,11 @@ class Api::V1::CoursesController < Api::V1::BaseController
     @courses = policy_scope(Course)
   end
 
+  def teacher_index
+    @courses = policy_scope(Course.where(user: current_user))
+    render :index
+  end
+
   def show; end
 
   def update
