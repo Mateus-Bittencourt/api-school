@@ -10,6 +10,7 @@ Rails.application.routes.draw do
       end
       resources :subscriptions, only: %i[index]
       resources :sessions, only: %i[create]
+      resources :users, only: :create
     end
   end
   # root to: 'pages#home'
